@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fa" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مکتب الصادق | کلاس ۷ الف</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f2f5fa;color:#18283c;font-family:Tahoma,Arial,sans-serif}
+header{background:linear-gradient(135deg,#173b68,#2875ad);color:white;text-align:center;padding:28px 12px;position:relative} .menuButton{position:absolute;right:14px;top:14px;background:rgba(255,255,255,.16);font-size:24px;padding:5px 13px;line-height:1.3} .mainMenu{position:absolute;z-index:20;right:12px;top:65px;width:min(260px,calc(100vw - 24px));background:white;color:#18283c;border:1px solid #d8e2ed;border-radius:14px;box-shadow:0 10px 28px #102b4b33;padding:10px;text-align:right} .mainMenu button{display:block;width:100%;margin:5px 0;text-align:right;background:#f0f5fa;color:#173b68} .infoPanel{background:white;border:1px solid #e0e7ef;border-radius:14px;padding:17px;margin-bottom:16px;line-height:2} .studentList{columns:2;column-gap:30px;padding-right:24px} .schedule{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px} .schedule th,.schedule td{border:1px solid #dce5ef;padding:10px;text-align:center;vertical-align:middle} .schedule th{background:#eaf1f8;color:#173b68} @media(max-width:520px){.studentList{columns:1}.schedule th,.schedule td{padding:7px 4px;font-size:12px}}
+header h1{margin:0 0 8px}main{max-width:950px;margin:22px auto;padding:0 14px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+button{font:inherit;border:0;border-radius:10px;padding:11px 15px;background:#173b68;color:white;cursor:pointer}
+.secondary{background:#e3edf7;color:#173b68}.danger{background:#a83232}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.subject,.panel,.content{background:white;border:1px solid #e0e7ef;border-radius:14px;padding:17px}
+.subject{text-align:right;cursor:pointer}.subject h3{margin:0 0 8px;color:#173b68}
+.muted{color:#68788b;font-size:13px}.hidden{display:none!important}
+.post{border:1px solid #e3e9f0;border-radius:12px;padding:14px;margin:12px 0}
+.post h3{color:#173b68;margin:7px 0}.post p{white-space:pre-wrap;line-height:1.9;margin:0}
+label{display:block;margin:12px 0 6px}input,select,textarea{width:100%;padding:11px;border:1px solid #cbd6e2;border-radius:9px;font:inherit}
+textarea{min-height:100px}.notice{margin-top:18px;background:#fff7dc;border:1px solid #ecd68a;border-radius:12px;padding:13px;line-height:1.8;font-size:13px}
+.empty{text-align:center;color:#68788b;padding:24px}footer{text-align:center;color:#68788b;padding:24px;font-size:12px}
+</style>
+<header><button id="menuToggle" class="menuButton" aria-label="باز کردن منو" aria-expanded="false">☰</button><h1>مکتب الصادق</h1><div>سامانه درس‌ها و تکالیف | کلاس ۷ الف</div><nav id="mainMenu" class="mainMenu hidden"><button id="showStudents">اسامی دانش‌آموزان</button><button id="showSchedule">برنامه هفتگی</button><button id="menuImport">دریافت فایل انتقالی</button></nav></header>
+<main>
+<section id="home"><div class="toolbar"><div><b>درس‌های کلاس</b><div class="muted">برای دیدن مطالب هر درس، کادر آن را انتخاب کن.</div></div><button id="openAdmin">ورود مدیر</button></div><div class="grid" id="subjects"></div></section>
+<section id="studentsView" class="infoPanel hidden"><div class="toolbar"><h2>اسامی دانش‌آموزان</h2><button class="secondary" data-home>بازگشت</button></div><ol class="studentList"><li>پرهام احمدی</li><li>مهراد بابایی</li><li>ارتین فسایی</li><li>نجیمی</li><li>علی جمیلی</li><li>کسرا نوروزی</li><li>ماهبد سروری</li><li>امیررضا شیرزادی</li><li>پارسا قدسی</li><li>یاسین علی محمدی</li><li>امین محمد خانی</li><li>ادیبی</li></ol></section>\n<section id="scheduleView" class="infoPanel hidden"><div class="toolbar"><h2>برنامه هفتگی</h2><button class="secondary" data-home>بازگشت</button></div><div style="overflow-x:auto"><table class="schedule"><thead><tr><th>روز</th><th>زنگ اول</th><th>زنگ دوم</th><th>زنگ سوم</th><th>زنگ چهارم</th></tr></thead><tbody><tr><th>شنبه</th><td>زبان / عربی</td><td>مطالعات</td><td>عربی</td><td>فارسی</td></tr><tr><th>یکشنبه</th><td>ورزش</td><td>زبان</td><td>علوم</td><td>دینی</td></tr><tr><th>دوشنبه</th><td>فارسی</td><td>ریاضی (امتحان)</td><td>مطالعات</td><td>مهارت</td></tr><tr><th>سه‌شنبه</th><td>فناوری</td><td>تفکر</td><td>قرآن</td><td>ریاضی</td></tr><tr><th>چهارشنبه</th><td>علوم</td><td>ریاضی</td><td>ورزش</td><td>هنر</td></tr></tbody></table></div></section>\n<section id="lesson" class="content hidden"><button class="secondary" id="back">بازگشت به درس‌ها</button><h2 id="lessonName"></h2><div class="muted" id="teacher"></div><div id="posts"></div></section>
+<input id="importFile" type="file" accept=".json,application/json" class="hidden">\n<section id="admin" class="panel hidden"><div class="toolbar"><h2>پنل مدیریت</h2><button class="secondary" id="closeAdmin">بستن</button></div>
+<p class="muted">از این بخش می‌توانی مطالب همه درس‌ها را مدیریت کنی و همه آن‌ها را یک‌جا برای معلم‌ها بفرستی یا از فایل دریافت کنی.</p>
+<div id="loginBox"><label>رمز آزمایشی مدیر</label><input id="pin" type="password" placeholder="رمز را وارد کن"><button id="login" style="margin-top:10px">ورود</button><p class="muted">رمز ورود مدیر تنظیم شده است.</p></div>
+<div id="editor" class="hidden"><h3>افزودن مطلب</h3><label>درس</label><select id="subjectSelect"></select><label>نوع مطلب</label><select id="kind"><option>تکلیف</option><option>سؤال و نمونه‌سؤال</option><option>درس جدید</option><option>اطلاعیه</option><option>جزوه</option></select><label>عنوان</label><input id="title" placeholder="مثلاً تکالیف درس پنجم"><label>متن</label><textarea id="body" placeholder="متن مطلب را بنویس..."></textarea><label>فایل یا عکس (اختیاری)</label><input id="file" type="file" accept="image/*,.pdf,.doc,.docx"><button id="publish" style="margin-top:12px">انتشار مطلب</button> <button id="cancelEdit" class="secondary hidden" type="button" style="margin-top:12px">لغو ویرایش</button><hr style="border:0;border-top:1px solid #e3e9f0;margin:22px 0">
+<h3>انتقال همه مطالب همه درس‌ها</h3>
+<p class="muted">با ساخت فایل انتقال، تمام مطالب زبان، عربی، ریاضی و بقیه درس‌ها به همراه عکس‌ها و پیوست‌ها در یک فایل قرار می‌گیرند. معلم باید همین برنامه را داشته باشد.</p>
+<div class="toolbar"><button id="exportData" type="button">ساخت فایل انتقال همه درس‌ها</button><button class="secondary" id="chooseImport" type="button">دریافت فایل انتقالی</button></div>
+<div id="transferStatus" class="muted" aria-live="polite"></div>
+<h3>مدیریت مطالب این دستگاه</h3><div id="adminPosts"></div></div></section>
+<div class="notice"><b>توجه:</b> مطالب در همین مرورگر ذخیره می‌شوند. برای انتقال همه درس‌ها به دستگاه معلم، از پنل مدیریت گزینه «ساخت فایل انتقال همه درس‌ها» را بزن و فایل را برای او بفرست؛ معلم با «دریافت فایل انتقالی» اطلاعات را جایگزین می‌کند. این روش همگام‌سازی آنلاین نیست.</div>
+</main><footer>مکتب الصادق · کلاس ۷ الف</footer>
+<script>
+const subjects=[["زبان","آقای بابک حامدی‌نسب"],["عربی","استاد لشکری"],["مطالعات","استاد امانی"],["فارسی","استاد رضایی"],["علوم","استاد ایدلی"],["دینی","استاد شوندی"],["ریاضی","استاد تژم"],["مهارت","استاد شوندی"],["فناوری","استاد موسوی"],["تفکر","استاد پشنگیان"],["قرآن","استاد قلیوند"],["هنر","استاد سامخانیان"],["ورزش","استاد نوری"]];
+const KEY="alsadeq7a_demo_posts";let posts=JSON.parse(localStorage.getItem(KEY)||"[]");let editingId=null;
+const el=id=>document.getElementById(id), esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function save(){localStorage.setItem(KEY,JSON.stringify(posts))}
+function renderSubjects(){el("subjects").innerHTML=subjects.map(([s,t])=>`<button class="subject" data-s="${s}"><h3>${s}</h3><span class="muted">${t}</span></button>`).join("");document.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>showLesson(b.dataset.s));el("subjectSelect").innerHTML=subjects.map(([s])=>`<option>${s}</option>`).join("")}
+function postHtml(p,admin=false){return `<article class="post"><div class="muted">${esc(p.kind)} · ${new Date(p.date).toLocaleString("fa-IR")}</div><h3>${esc(p.title)}</h3><p>${esc(p.body)}</p>${p.file?`<a href="${p.file}" download="${esc(p.fileName)}">دریافت فایل پیوست</a>`:""}${admin?`<p style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" data-edit="${p.id}">ویرایش</button><button class="danger" type="button" data-delete="${p.id}">حذف</button></p>`:""}</article>`}
+function showLesson(s){el("home").classList.add("hidden");el("admin").classList.add("hidden");el("lesson").classList.remove("hidden");el("lessonName").textContent=s;el("teacher").textContent=subjects.find(x=>x[0]===s)[1];let a=posts.filter(p=>p.subject===s).sort((x,y)=>y.date-x.date);el("posts").innerHTML=a.length?a.map(p=>postHtml(p)).join(""):'<div class="empty">هنوز مطلبی برای این درس منتشر نشده است.</div>'}
+function resetEditor(){editingId=null;el("title").value="";el("body").value="";el("file").value="";el("publish").textContent="انتشار مطلب";el("cancelEdit").classList.add("hidden")}
+function startEdit(id){const p=posts.find(x=>x.id===id);if(!p)return;editingId=id;el("subjectSelect").value=p.subject;el("kind").value=p.kind;el("title").value=p.title;el("body").value=p.body;el("file").value="";el("publish").textContent="ذخیره تغییرات";el("cancelEdit").classList.remove("hidden");el("title").focus();window.scrollTo({top:el("editor").offsetTop,behavior:"smooth"})}
+function renderAdmin(){el("adminPosts").innerHTML=posts.length?posts.slice().sort((a,b)=>b.date-a.date).map(p=>`<div><div class="muted">درس: ${esc(p.subject)}</div>${postHtml(p,true)}</div>`).join(""):'<div class="empty">هنوز مطلبی ثبت نشده.</div>';document.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>startEdit(b.dataset.edit));document.querySelectorAll("[data-delete]").forEach(b=>b.onclick=()=>{if(confirm("مطلب حذف شود؟")){posts=posts.filter(p=>p.id!==b.dataset.delete);if(editingId===b.dataset.delete)resetEditor();save();renderAdmin()}})}
+el("openAdmin").onclick=()=>{el("home").classList.add("hidden");el("admin").classList.remove("hidden")};el("closeAdmin").onclick=()=>{el("admin").classList.add("hidden");el("home").classList.remove("hidden")};el("back").onclick=()=>{el("lesson").classList.add("hidden");el("home").classList.remove("hidden")};
+el("login").onclick=()=>{if(el("pin").value==="reza1717xgame17"){el("loginBox").classList.add("hidden");el("editor").classList.remove("hidden");renderAdmin()}else alert("رمز درست نیست.")};
+el("publish").onclick=()=>{let f=el("file").files[0],title=el("title").value.trim(),body=el("body").value.trim();const old=editingId?posts.find(p=>p.id===editingId):null;if(!title||(!body&&!f&&!(old&&old.file))){alert("عنوان و متن یا فایل را وارد کن.");return}let finish=att=>{if(editingId){posts=posts.map(p=>p.id===editingId?{...p,subject:el("subjectSelect").value,kind:el("kind").value,title,body,date:Date.now(),...att}:p)}else{posts.push({id:String(Date.now())+Math.random(),subject:el("subjectSelect").value,kind:el("kind").value,title,body,date:Date.now(),...att})}save();resetEditor();renderAdmin();alert(editingId?"تغییرات ذخیره شد.":"مطلب در همین دستگاه ذخیره شد.")};if(f){let r=new FileReader();r.onload=()=>finish({file:r.result,fileName:f.name});r.readAsDataURL(f)}else finish(old&&old.file?{file:old.file,fileName:old.fileName}: {})};
+el("cancelEdit").onclick=resetEditor;
+// انتقال کامل اطلاعات همه درس‌ها (شامل فایل‌ها و عکس‌های ذخیره‌شده به صورت Data URL)
+el("exportData").onclick=()=>{
+  try{
+    const payload={app:"maktab-alsadeq-7a",formatVersion:1,exportedAt:new Date().toISOString(),subjects:subjects,posts:posts};
+    const blob=new Blob([JSON.stringify(payload)],{type:"application/json;charset=utf-8"});
+    const url=URL.createObjectURL(blob);const a=document.createElement("a");
+    a.href=url;a.download="انتقال-همه-درس‌های-مکتب-الصادق-7الف.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+    el("transferStatus").textContent="فایل انتقال همه درس‌ها ساخته شد. آن را برای معلم بفرست.";
+  }catch(err){alert("ساخت فایل انجام نشد: "+err.message)}
+};
+el("chooseImport").onclick=()=>el("importFile").click();
+el("importFile").onchange=async ev=>{
+  const file=ev.target.files&&ev.target.files[0];if(!file)return;
+  try{
+    const payload=JSON.parse(await file.text());
+    if(payload.app!=="maktab-alsadeq-7a"||payload.formatVersion!==1||!Array.isArray(payload.posts))throw new Error("این فایل، فایل انتقال معتبر مکتب الصادق نیست.");
+    const valid=payload.posts.every(p=>p&&typeof p.subject==="string"&&subjects.some(s=>s[0]===p.subject)&&typeof p.title==="string"&&typeof p.body==="string"&&typeof p.date==="number");
+    if(!valid)throw new Error("ساختار بعضی مطالب فایل درست نیست.");
+    const counts={};payload.posts.forEach(p=>counts[p.subject]=(counts[p.subject]||0)+1);
+    const summary=Object.entries(counts).map(([s,n])=>s+": "+n).join("، ")||"مطالبی ندارد";
+    if(!confirm("توجه: تمام مطالب فعلی این دستگاه حذف و با اطلاعات فایل جایگزین می‌شود.\nتعداد مطالب: "+payload.posts.length+"\n"+summary+"\nادامه می‌دهی؟"))return;
+    posts=payload.posts;save();renderAdmin();
+    el("transferStatus").textContent="دریافت موفق بود؛ مطالب همه درس‌ها جایگزین شدند.";
+    alert("همه مطالب فایل دریافت و جایگزین شدند.");
+  }catch(err){alert("دریافت فایل انجام نشد: "+err.message)}finally{ev.target.value=""}
+};
+el("menuToggle").onclick=()=>{const m=el("mainMenu");m.classList.toggle("hidden");el("menuToggle").setAttribute("aria-expanded",String(!m.classList.contains("hidden")))};
+function hideMainViews(){["studentsView","scheduleView","lesson","admin"].forEach(id=>el(id).classList.add("hidden"));el("home").classList.remove("hidden");el("mainMenu").classList.add("hidden");el("menuToggle").setAttribute("aria-expanded","false")}
+el("showStudents").onclick=()=>{hideMainViews();el("home").classList.add("hidden");el("studentsView").classList.remove("hidden")};
+el("showSchedule").onclick=()=>{hideMainViews();el("home").classList.add("hidden");el("scheduleView").classList.remove("hidden")};
+el("menuImport").onclick=()=>{el("mainMenu").classList.add("hidden");el("menuToggle").setAttribute("aria-expanded","false");el("importFile").click()};
+document.querySelectorAll("[data-home]").forEach(b=>b.onclick=hideMainViews);
+renderSubjects();
+</script></html>
